@@ -12,6 +12,6 @@ public interface ProductService {
 
     public Product getProductById(Integer id);
 
-    public void deleteProduct(Integer id);
+    public String deleteProduct(Integer id);
 
 }

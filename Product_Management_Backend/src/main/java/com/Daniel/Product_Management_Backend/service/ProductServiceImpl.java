@@ -27,11 +27,14 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void deleteProduct(Integer id) {
+    public String deleteProduct(Integer id) {
         Product product = productRepo.findById(id).get();
 
         if(product != null){
             productRepo.delete(product);
+            return "Product deleted successfully";
         }
+
+        return "Something went wrong";
     }
 }
