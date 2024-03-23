@@ -3,9 +3,11 @@ package com.Daniel.Product_Management_Backend.service;
 import com.Daniel.Product_Management_Backend.model.Product;
 import com.Daniel.Product_Management_Backend.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
@@ -36,5 +38,17 @@ public class ProductServiceImpl implements ProductService{
         }
 
         return "Something went wrong";
+    }
+
+    @Override
+    public Product editProduct(Product p, Integer id) {
+
+        Product oldProduct = productRepo.findById(id).get();
+        oldProduct.setProductName(p.getProductName());
+        oldProduct.setDescription(p.getDescription());
+        oldProduct.setPrice(p.getPrice());
+        oldProduct.setStatus(p.getStatus());
+
+        return productRepo.save(oldProduct);
     }
 }
