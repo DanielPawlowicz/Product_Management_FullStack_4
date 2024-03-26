@@ -1,6 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
 
 const AddProduct = () => {
+
+    const [product, setProduct] = useState({
+        productName:"",
+        description:"",
+        price:"",
+        status:""
+    });
+
+    const handleChange = (e) => {
+        const value=e.target.value;
+        setProduct({...product, [e.target.name]:value})
+    }
+
   return (
     <>
         <div className='container mt-3'>
@@ -14,19 +28,19 @@ const AddProduct = () => {
                             <form>
                                 <div className='mb-3'>
                                     <label>Enter Product Name</label>
-                                    <input type='text' name="productName" className='form-control'/>
+                                    <input type='text' name="productName" className='form-control' onChange={(e)=>handleChange(e)}/>
                                 </div>
                                 <div className='mb-3'>
                                     <label>Enter Product Description</label>
-                                    <input type='text' name="description" className='form-control'/>
+                                    <input type='text' name="description" className='form-control' onChange={(e)=>handleChange(e)}/>
                                 </div>
                                 <div className='mb-3'>
                                     <label>Enter Product Price</label>
-                                    <input type='text' name="price" className='form-control'/>
+                                    <input type='text' name="price" className='form-control' onChange={(e)=>handleChange(e)}/>
                                 </div>
                                 <div className='mb-3'>
                                     <label>Enter Product Status</label>
-                                    <input type='text' name="status" className='form-control'/>
+                                    <input type='text' name="status" className='form-control' onChange={(e)=>handleChange(e)}/>
                                 </div>
                                 <button className='btn btn-primary col-md-12'>Submit</button>
                             </form>
