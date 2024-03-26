@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import productService from '../service/productService';
 
 const AddProduct = () => {
 
@@ -7,13 +8,26 @@ const AddProduct = () => {
         productName:"",
         description:"",
         price:"",
-        status:""
+        status:"",
     });
 
     const handleChange = (e) => {
         const value=e.target.value;
         setProduct({...product, [e.target.name]:value})
-    }
+        // console.log(product);
+    };
+
+    const ProductRegister = (e) =>{
+        e.preventDefault();
+        // console.log("ready");
+        // console.log(product);
+
+        productService.saveProduct(product).then((res) => {
+            console.log("Product added sucessfully")
+        }).catch((error)=>{
+            console.log(error);
+        });
+    };
 
   return (
     <>
@@ -25,7 +39,7 @@ const AddProduct = () => {
                             Add Product
                         </div>
                         <div className='card-body'>
-                            <form>
+                            <form onSubmit={(e)=>ProductRegister(e)}>
                                 <div className='mb-3'>
                                     <label>Enter Product Name</label>
                                     <input type='text' name="productName" className='form-control' onChange={(e)=>handleChange(e)}/>
