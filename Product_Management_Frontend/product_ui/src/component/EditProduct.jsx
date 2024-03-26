@@ -2,7 +2,7 @@ import React from 'react'
 
 const EditProduct = () => {
   return (
-    <div>EditProduct Page</div>
+    <div>Edit Product Page</div>
   )
 }
 
