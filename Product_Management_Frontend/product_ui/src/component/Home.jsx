@@ -7,6 +7,8 @@ const Home = () => {
 
   const [productList, setProductList] = useState([]);
 
+  const [msg, setMsg] = useState("");
+
   useEffect(() => {
     productService
     .getAllProduct()
@@ -19,6 +21,17 @@ const Home = () => {
     });
   }, []);
 
+  const deleteProduct = (id) => {
+    productService
+      .deleteProduct(id)
+      .then((res) => {
+        setMsg("Deleted Succesfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <div className='container mt-3'>
@@ -28,10 +41,15 @@ const Home = () => {
 
               <div className="card-header fs-3 text-center">
                 All Product List
+
+                {
+                    msg &&
+                    <p className='fs-4 text-center text-success'>{msg}</p>
+                }
               </div>
 
               <div className="card-body">
-                <table class="table">
+                <table className="table">
                   <thead>
                     
                         <tr>
@@ -54,8 +72,8 @@ const Home = () => {
                           <td>{p.price}</td>
                           <td>{p.status}</td>
                           <td>
-                            <Link tp="" className='btn btn-sm btn-primary'>Edit</Link>
-                            <Link tp="" className='btn btn-sm btn-danger ms-1'>Delete</Link>
+                            <Link to="" className='btn btn-sm btn-primary'>Edit</Link>
+                            <button onClick={() => deleteProduct(p.id)} className='btn btn-sm btn-danger ms-1'>Delete</button>
                           </td>
                         </tr>
                       ))
