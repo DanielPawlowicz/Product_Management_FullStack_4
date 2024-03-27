@@ -10,6 +10,11 @@ const Home = () => {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
+    init();
+  }, []);
+
+  
+  const init = () => {
     productService
     .getAllProduct()
     .then((res) => {
@@ -19,18 +24,20 @@ const Home = () => {
     .catch((error) => {
       console.log(error);
     });
-  }, []);
+  }
 
   const deleteProduct = (id) => {
     productService
       .deleteProduct(id)
       .then((res) => {
         setMsg("Deleted Succesfully");
+        init();
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  
 
   return (
     <>
