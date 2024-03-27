@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin
 @RestController
 public class ProductController {
 
@@ -40,3 +41,4 @@ public class ProductController {
         return new ResponseEntity<>(productService.editProduct(product, id), HttpStatus.CREATED);
     }
 }
+
